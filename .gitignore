@@ -1,0 +1,41 @@
+=============== 
+Unity generated
+===============
+/Temp/
+/Debug/
+
+=====================================
+Visual Studio / MonoDevelop generated
+=====================================
+/obj/
+*.svd
+*.userprefs
+/*.csproj
+*.pidb
+*.suo
+/*.sln
+*.user
+*.unityproj
+*.booproj
+
+============
+OS generated
+============
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+
+/Assets/Plugins/x86_64/BHDeductionclient.log
+/Assets/Plugins/x86_64/BHDeductionclient.log.meta
+
+*.meta~*
+
+*.log
+*.log.meta
+
+/Assets/Plugins/x86_64/BHCSWrapper.log.meta
