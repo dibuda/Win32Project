@@ -144,12 +144,14 @@
   <ItemGroup>
     <ClCompile Include="ggl.h" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Model.cpp" />
     <ClCompile Include="scene.cpp" />
     <ClCompile Include="skybox.cpp" />
     <ClCompile Include="utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="glew.h" />
+    <ClInclude Include="model.h" />
     <ClInclude Include="scene.h" />
     <ClInclude Include="skybox.h" />
     <ClInclude Include="utils.h" />

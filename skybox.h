@@ -5,7 +5,9 @@ class SkyBox
 {
 
 	GLuint mTextures[6];
+	GLuint mFastDrawCall;
 public:
-	void Init(const char*path);
-	void Draw();
+	void Init(const char*imageDir);
+	void DrawCommand();
+
 };
