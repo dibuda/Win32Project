@@ -25,7 +25,7 @@ void Init()
 	glLoadIdentity();
 
 	skybox.Init("Res/skybox/");
-	model.Init("Res/Quad.obj");
+	model.Init("Res/Sphere.obj");
 
 	//texture = CreateTexture2DFromBMP("Res/test.bmp");
 
@@ -73,7 +73,7 @@ void Draw()
 	//glVertex3f(0.1f, 0.1f, -0.4f);
 	//glVertex3f(-0.1f, 0.1f, -0.4f);
 
-	glEnd();
+	//glEnd();
 
 
 

@@ -12,8 +12,6 @@ struct VertexData
 class Model
 {
 public:
-	Model();
-	~Model();
 	void Init(const char *modelPath);
 	void Draw();
 
