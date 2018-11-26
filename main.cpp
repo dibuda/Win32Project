@@ -2,6 +2,7 @@
 
 #include "ggl.h"
 #include "scene.h"
+#include "utils.h"
 
 #pragma  comment(lib,"glew32.lib")
 //#pragma  comment(lib,"glaux.lib" )
@@ -9,6 +10,11 @@
 
 #pragma comment(lib,"opengl32.lib")
 
+
+#pragma comment(lib,"winmm.lib")
+
+POINT originalPos;
+bool rotateView = false;
 unsigned char * LoadFileContent(const char *path, int &filesize)
 {
 	unsigned char * fileContent = nullptr;
@@ -32,13 +38,53 @@ unsigned char * LoadFileContent(const char *path, int &filesize)
 	}
 	return fileContent;
 }
+float GetFrameTime()
+{
+	static unsigned long lastTime = 0, timeSinceComputerStart = 0;
+	timeSinceComputerStart = timeGetTime();
+	unsigned long frameTime = lastTime == 0 ? 0 : timeSinceComputerStart - lastTime;
+	lastTime = timeSinceComputerStart;
+	return float(frameTime) / 1000.0f;
 
+
+}
 LRESULT CALLBACK GLWindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
 	switch (msg)
 	{
+	case WM_RBUTTONDOWN:
+		GetCursorPos(&originalPos);
+		ShowCursor(false);
+		rotateView = true;
+		break;
+	case WM_RBUTTONUP:
+		SetCursorPos(originalPos.x, originalPos.y);
+		ShowCursor(true);
+		rotateView = false;
+		break;
+		break;
+	case WM_MOUSEMOVE:
+		if (rotateView)
+		{
+			POINT currentPos;
+			GetCursorPos(&currentPos);
+			int deltaX = currentPos.x - originalPos.x;
+			int deltaY = currentPos.y - originalPos.y;
+			OnMouseMove(deltaX, deltaY);
+			SetCursorPos(originalPos.x, originalPos.y);
+			
+		}
+		break;
+
 	case WM_CLOSE:
 		PostQuitMessage(0);
+		break;
+	case WM_KEYDOWN:
+
+		OnKeyDown(wParam);
+		break;
+	case  WM_KEYUP:
+		OnKeyUp(wParam);
 		break;
 	}
 	return DefWindowProc(hwnd, msg, wParam, lParam);

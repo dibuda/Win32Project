@@ -1,9 +1,16 @@
-#include "Model.h"
+#include "model.h"
 #include "utils.h"
 #include <string>
 #include <sstream>
 #include <vector>
 
+Model::Model()
+{
+	memset(mAmbientMaterial, 0, sizeof(mAmbientMaterial));
+	memset(mDiffuseMaterial, 0, sizeof(mDiffuseMaterial));
+	memset(mSpecularMaterial, 0, sizeof(mSpecularMaterial));
+
+}
 void Model::Init(const char*modelPath)
 {
 	struct FloatData
@@ -127,8 +134,17 @@ void Model::Draw()
 	{
 		angle = 0.0f;
 	}
+
+	glEnable(GL_LIGHTING);
+	glMaterialfv(GL_FRONT, GL_AMBIENT, mAmbientMaterial);
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, mDiffuseMaterial);
+	glMaterialfv(GL_FRONT, GL_SPECULAR, mSpecularMaterial);
+
+
+	glEnable(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, mTexture);
 	glPushMatrix();
-	glTranslatef(0.0f, 0.0f, -3.0f);
+	glTranslatef(0.0f, 0.0f, -6.0f);
 	glRotatef(angle, 0.0f, 1.0f, 0.0f);
 	glBegin(GL_TRIANGLES);
 	for (int i = 0; i<mIndexCount; ++i)
@@ -139,4 +155,26 @@ void Model::Draw()
 	}
 	glEnd();
 	glPopMatrix();
+}
+
+void Model::SetAmbienMaterial(float r, float g, float b, float a)
+{
+	mAmbientMaterial[0] = r;
+	mAmbientMaterial[1] = g;
+	mAmbientMaterial[2] = b;
+	mAmbientMaterial[3] = a;
+}
+void Model::SetDiffuseMaterial(float r, float g, float b, float a)
+{
+	mDiffuseMaterial[0] = r;
+	mDiffuseMaterial[1] = g;
+	mDiffuseMaterial[2] = b;
+	mDiffuseMaterial[3] = a;
+}
+void Model::SetSpecularMaterial(float r, float g, float b, float a)
+{
+	mSpecularMaterial[0] = r;
+	mSpecularMaterial[1] = g;
+	mSpecularMaterial[2] = b;
+	mSpecularMaterial[3] = a;
 }

@@ -8,3 +8,4 @@ GLuint CreateTexture2D(unsigned char *pixelData, int width, int height, GLenum t
 GLuint CreateTexture2DFromBMP(const char *bmpPath);
 
 GLuint CreateDisplayList(std::function<void>foo);
+float GetFrameTime();

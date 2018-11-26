@@ -34,6 +34,7 @@ void SkyBox::Init(const char*imageDir)
 
 void SkyBox::DrawCommand()
 {
+	glDisable(GL_LIGHTING);
 	glDisable(GL_DEPTH_TEST);
 	//front
 
